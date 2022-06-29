@@ -15,8 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
-
         $user = User::where('email', '=', 'admin@admin.com')->first();
         if (!$user) {
             User::factory()->create([
@@ -25,5 +23,7 @@ class UserSeeder extends Seeder
                 'role' => 'admin',
             ]);
         }
+
+        User::factory(10)->create();
     }
 }
