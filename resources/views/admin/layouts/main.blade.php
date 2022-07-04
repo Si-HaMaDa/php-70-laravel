@@ -33,28 +33,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-
     <script>
         const FULL_URL = "{{ url('') }}";
     </script>
 
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/5.0/examples/dashboard/dashboard.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url('css/app.css') }}">
 
     @stack('styles')
 </head>
@@ -124,6 +110,8 @@
 
     <!-- TODO:: Show show-toasts exists -->
     {{-- @include('admin.layouts.parts.show-toasts') --}}
+
+    <script src="{{ url('js/app.js') }}"></script>
 
     @stack('scripts')
 </body>
