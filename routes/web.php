@@ -23,3 +23,5 @@ Route::get('/', function () {
 Route::get('admin', AdminController::class);
 
 Route::get('admin/users', [UserController::class, 'index']);
+
+Route::get('admin/users/{id}', [UserController::class, 'show'])->where('id', '[0-9]+');

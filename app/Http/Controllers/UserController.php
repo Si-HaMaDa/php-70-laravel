@@ -47,7 +47,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        // $user = User::where('id', $id)->first();
+        // $user = User::find($id);
+        $user = User::findorFail($id);
+
+        return view('admin.users.show', compact('user'));
     }
 
     /**

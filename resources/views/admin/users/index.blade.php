@@ -67,7 +67,8 @@
                     {{ $user->role }}
                 </td>
                 <td>
-                    <a class="p-2 btn btn-primary show" data-id="{{ $user->id }}" href="">
+                    <a class="p-2 btn btn-primary show" data-id="{{ $user->id }}"
+                        href="{{ url('admin/users/'.$user->id) }}">
                         <i data-feather="eye" class="material-icons opacity-10">visibility</i>
                     </a>
                     <a class="p-2 btn btn-warning edit" data-id="{{ $user->id }}" href="">
