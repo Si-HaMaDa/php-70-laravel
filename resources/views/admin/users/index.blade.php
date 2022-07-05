@@ -3,7 +3,6 @@
 @section('title', __('users.plural'))
 
 @section('content')
-
 <div class="content">
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -36,39 +35,30 @@
         </thead>
         <tbody>
             @foreach ($users as $user)
-            <tr>
-
+            <tr id="tr-row-{{ $user->id }}">
                 <td>
                     <input class="row-bulk-delete" type="checkbox" name="id[]" value="{{ $user->id }}"
                         id="input-row-{{ $user->id }}" />
                 </td>
-
                 <td>
                     <label for="input-row-{{ $user->id }}">
                         {{ $user->id }}
                     </label>
                 </td>
-
                 <td>
                     <label for="input-row-{{ $user->id }}">
                         {{ $user->name }}
                     </label>
                 </td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->age }}</td>
                 <td>
-                    {{ $user->email }}
+                    <img class="img-thumbnail" width="200" src="{{ $user->image }}" alt="{{ $user->name }}">
                 </td>
-                <td>
-                    {{ $user->age }}
-                </td>
-                <td>
-                    <img src="{{ url($user->image) }}" alt="" srcset="">
-                </td>
-                <td>
-                    {{ $user->role }}
-                </td>
+                <td>@lang('users.roles.'.$user->role)</td>
                 <td>
                     <a class="p-2 btn btn-primary show" data-id="{{ $user->id }}"
-                        href="{{ url('admin/users/'.$user->id) }}">
+                        href="{{ url('admin/users/' . $user->id) }}">
                         <i data-feather="eye" class="material-icons opacity-10">visibility</i>
                     </a>
                     <a class="p-2 btn btn-warning edit" data-id="{{ $user->id }}" href="">
@@ -87,10 +77,9 @@
             </tr>
             @endforeach
         </tbody>
-
     </table>
 
-    {!! $users->links() !!}
+    {!! $users->appends(Request::all())->links() !!}
+    {{-- {{ $users->links('vendor.pagination.bootstrap-5') }} --}}
 </div>
-
 @endsection

@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title', __('users.singluar'))
+@section('title', __('users.show'))
 
 @section('content')
 
