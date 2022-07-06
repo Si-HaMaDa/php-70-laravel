@@ -20,8 +20,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('admin', AdminController::class);
+Route::get('admin', AdminController::class)->name('admin');
 
-Route::get('admin/users', [UserController::class, 'index']);
+Route::get('admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
-Route::get('admin/users/{id}', [UserController::class, 'show']);
+Route::get('admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
+
+Route::get('admin/users/{id}', [UserController::class, 'show'])->name('admin.users.show');

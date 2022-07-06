@@ -7,7 +7,7 @@
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">@lang('users.plural')</h1>
-        <a class="btn btn-primary" href=""><i data-feather="plus"></i>
+        <a class="btn btn-primary" href="{{ route('admin.users.create') }}"><i data-feather="plus"></i>
             @lang('users.create')</a>
     </div>
     <div
@@ -58,7 +58,7 @@
                 <td>@lang('users.roles.'.$user->role)</td>
                 <td>
                     <a class="p-2 btn btn-primary show" data-id="{{ $user->id }}"
-                        href="{{ url('admin/users/' . $user->id) }}">
+                        href="{{ route('admin.users.show', $user->id) }}">
                         <i data-feather="eye" class="material-icons opacity-10">visibility</i>
                     </a>
                     <a class="p-2 btn btn-warning edit" data-id="{{ $user->id }}" href="">
