@@ -29,3 +29,7 @@ Route::get('admin/users/create', [UserController::class, 'create'])->name('admin
 Route::post('admin/users', [UserController::class, 'store'])->name('admin.users.store');
 
 Route::get('admin/users/{id}', [UserController::class, 'show'])->name('admin.users.show');
+
+Route::get('admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+
+Route::patch('admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');

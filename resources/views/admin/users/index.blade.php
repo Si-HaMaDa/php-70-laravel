@@ -61,7 +61,7 @@
                         href="{{ route('admin.users.show', $user->id) }}">
                         <i data-feather="eye" class="material-icons opacity-10">visibility</i>
                     </a>
-                    <a class="p-2 btn btn-warning edit" data-id="{{ $user->id }}" href="">
+                    <a class="p-2 btn btn-warning edit" data-id="{{ $user->id }}" href="{{ route('admin.users.edit', $user->id) }}">
                         <i data-feather="edit" class="material-icons opacity-10">edit</i>
                     </a>
                     <form class="delete-form d-inline-block" data-name="{{ $user->name }}" action="" method="post"

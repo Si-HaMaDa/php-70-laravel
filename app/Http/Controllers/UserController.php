@@ -56,7 +56,9 @@ class UserController extends Controller
         $user->bio = $validated['bio'];
         $user->save(); */
 
-        $user = User::create($validated);
+        $validated['password'] = \Hash::make($validated['password']);
+
+        User::create($validated);
 
         return redirect(route('admin.users.index'))->with('success', __('users.created'));
     }
@@ -88,7 +90,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        if (!$user)
+            return redirect(route('admin.users.index'))->with('error', 'No Profile Found!');
+
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -100,7 +107,29 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|regex:/^[a-zA-Z.\s]*$/',
+            'email' => 'required|email:rfc,dns|unique:users,email,' . $id,
+            'password' => 'nullable|min:6|max:20|confirmed',
+            'role' => 'required|in:admin,user',
+            'gender' => 'required|in:m,f',
+            'age' => 'required|integer',
+            'bio' => 'required|regex:/^[a-zA-Z\s]*$/',
+        ]);
+
+        /* $user = User::find($id);
+        $user->name = $validated['name'];
+        ...
+        $user->save(); */
+
+        $validated['password'] = \Hash::make($validated['password']);
+
+        // If any value is null remove it
+        $validated = array_filter($validated);
+
+        User::find($id)->update($validated);
+
+        return redirect(route('admin.users.index'))->with('success', __('users.updated'));
     }
 
     /**
