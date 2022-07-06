@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(5);
+        $users = User::orderBy('id', 'DESC')->paginate(5);
         return view('admin.users.index')->with('users', $users);
     }
 
@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -36,7 +36,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|regex:/^[a-zA-Z.\s]*$/',
+            'email' => 'required|email:rfc,dns|unique:users',
+            'password' => 'required|min:6|max:20|confirmed',
+            'role' => 'required|in:admin,user',
+            'gender' => 'required|in:m,f',
+            'age' => 'required|integer',
+            'bio' => 'required|regex:/^[a-zA-Z\s]*$/',
+        ]);
+
+        /* $user = new User();
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+        $user->password = $validated['password'];
+        $user->role = $validated['role'];
+        $user->gender = $validated['gender'];
+        $user->age = $validated['age'];
+        $user->bio = $validated['bio'];
+        $user->save(); */
+
+        $user = User::create($validated);
+
+        return redirect(route('admin.users.index'));
     }
 
     /**

@@ -88,7 +88,7 @@
                 <!-- Show session messages and errors if exists -->
                 {{-- @include('admin.layouts.parts.session-messages') --}}
 
-                {{-- @include('admin.layouts.parts.show-errors') --}}
+                @include('admin.layouts.parts.show-errors')
 
                 @yield('content')
             </main>
