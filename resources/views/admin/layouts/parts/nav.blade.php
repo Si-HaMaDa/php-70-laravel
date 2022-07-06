@@ -12,7 +12,7 @@
                 <a class="nav-link {{ strpos(Route::getCurrentRoute()->uri, 'admin/users') === false ? '' : 'active' }}"
                     href="{{ url('/admin/users') }}">
                     <span data-feather="users"></span>
-                    Users
+                    @lang('users.plural')
                 </a>
             </li>
             <li class="nav-item">
