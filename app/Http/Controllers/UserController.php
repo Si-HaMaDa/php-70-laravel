@@ -58,11 +58,11 @@ class UserController extends Controller
 
         $user = User::create($validated);
 
-        return redirect(route('admin.users.index'));
+        return redirect(route('admin.users.index'))->with('success', __('users.created'));
     }
 
     /**
-     * Display the specified resource.
+     *__() the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -71,7 +71,11 @@ class UserController extends Controller
     {
         // $user = User::where('id', $id)->first();
         // $user = User::find($id);
-        $user = User::findorFail($id);
+        $user = User::find($id);
+
+        if (!$user)
+            return redirect(route('admin.users.index'))->with('error', 'No Profile Found!');
+
 
         return view('admin.users.show', compact('user'));
     }

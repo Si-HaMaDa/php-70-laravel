@@ -86,7 +86,7 @@
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
                 <!-- Show session messages and errors if exists -->
-                {{-- @include('admin.layouts.parts.session-messages') --}}
+                @include('admin.layouts.parts.session-messages')
 
                 @include('admin.layouts.parts.show-errors')
 
