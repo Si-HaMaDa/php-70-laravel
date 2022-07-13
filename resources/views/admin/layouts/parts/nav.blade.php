@@ -3,7 +3,7 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link  {{ Route::getCurrentRoute()->uri == 'admin' ? 'active' : '' }}" aria-current="page"
-                    href="{{ route('admin') }}">
+                    href="{{ route('admin.') }}">
                     <span data-feather="home"></span>
                     Dashboard
                 </a>

@@ -20,18 +20,31 @@ Route::get('/', function () {
 });
 
 
-Route::get('admin', AdminController::class)->name('admin');
 
-Route::get('admin/users', [UserController::class, 'index'])->name('admin.users.index');
+// Route::get('admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
-Route::get('admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
+// Route::get('admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
 
-Route::post('admin/users', [UserController::class, 'store'])->name('admin.users.store');
+// Route::post('admin/users', [UserController::class, 'store'])->name('admin.users.store');
 
-Route::get('admin/users/{id}', [UserController::class, 'show'])->name('admin.users.show');
+// Route::get('admin/users/{id}', [UserController::class, 'show'])->name('admin.users.show');
 
-Route::get('admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+// Route::get('admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
 
-Route::patch('admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
+// Route::patch('admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
 
-Route::delete('admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+// Route::delete('admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+
+// Route::group([
+//     'prefix'    => 'admin',
+//     'as' => 'admin.',
+// ], function () {
+//     Route::get('/', AdminController::class); // route('admin')
+//     Route::resource('users', UserController::class);
+// });
+
+
+Route::prefix('admin')->as('admin.')->group(function () {
+    Route::get('/', AdminController::class); // route('admin')
+    Route::resource('users', UserController::class);
+});
