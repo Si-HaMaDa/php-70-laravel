@@ -154,7 +154,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        // User::find($id)->delete();
+        // [5, 6, 7, 8, 9, 10, 11, 12]
+        // $user = User::find($id);
+        // if ($user->image != 'users/avatar.png') \Storage::delete($user->image);
+        // $user->delete();
         User::destroy($id);
         return redirect(route('admin.users.index'))->with('success', __('users.deleted'));
     }
