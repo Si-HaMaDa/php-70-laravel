@@ -64,9 +64,10 @@
                     <a class="p-2 btn btn-warning edit" data-id="{{ $user->id }}" href="{{ route('admin.users.edit', $user->id) }}">
                         <i data-feather="edit" class="material-icons opacity-10">edit</i>
                     </a>
-                    <form class="delete-form d-inline-block" data-name="{{ $user->name }}" action="" method="post"
+                    <form class="delete-form d-inline-block" data-name="{{ $user->name }}" action="{{ route('admin.users.destroy', $user->id) }}" method="post"
                         id="{{ $user->id }}" class="form-horizontal d-inline-block">
                         @method('DELETE')
+                        {{-- <input type="hidden" name="_method" value="DELETE" /> --}}
                         @csrf
                         <button class="p-2 btn btn-danger delete" data-id="{{ $user->id }}"
                             data-name="{{ $user->name }}">
