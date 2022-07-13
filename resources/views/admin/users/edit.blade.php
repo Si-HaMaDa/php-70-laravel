@@ -95,6 +95,16 @@
                     </div>
                 </div>
 
+                <div class="col-12">
+                    <label for="image" class="form-label">@lang('users.image')</label>
+                    <input type="file" class="form-control" id="image" name="image" aria-label="Image"
+                        value="{{ old('image', $user->image) }}">
+                    <img class="img-thumbnail" width="50%" src="{{ url($user->image) }}" alt="<?= $user->bio ?>">
+                    <div class="invalid-feedback">
+                        Valid Image is required.
+                    </div>
+                </div>
+
                 <hr class="my-4">
 
                 <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>

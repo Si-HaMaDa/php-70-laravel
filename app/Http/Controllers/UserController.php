@@ -119,6 +119,7 @@ class UserController extends Controller
             'gender' => 'required|in:m,f',
             'age' => 'required|integer',
             'bio' => 'required|regex:/^[a-zA-Z\s]*$/',
+            'image' => 'nullable|file|image|between:1,6000'
         ]);
 
         /* $user = User::find($id);
@@ -131,7 +132,16 @@ class UserController extends Controller
         // If any value is null remove it
         $validated = array_filter($validated);
 
-        User::find($id)->update($validated);
+        $user = User::find($id);
+
+        if (!empty($validated['image'])) {
+            // Delete Old image if not the default image
+            if ($user->image != 'users/avatar.png') \Storage::delete($user->image);
+            // upload new image
+            $validated['image'] = $request->file('image')->store('users/images');
+        }
+
+        $user->update($validated);
 
         return redirect(route('admin.users.index'))->with('success', __('users.updated'));
     }
