@@ -57,7 +57,7 @@ class UserController extends Controller
         $user->bio = $validated['bio'];
         $user->save(); */
 
-        $validated['password'] = \Hash::make($validated['password']);
+        // $validated['password'] = \Hash::make($validated['password']);
 
         if (!empty($validated['image']))
             $validated['image'] = $request->file('image')->store('users/images');
@@ -127,7 +127,7 @@ class UserController extends Controller
         ...
         $user->save(); */
 
-        $validated['password'] = \Hash::make($validated['password']);
+        // $validated['password'] = \Hash::make($validated['password']);
 
         // If any value is null remove it
         $validated = array_filter($validated);
