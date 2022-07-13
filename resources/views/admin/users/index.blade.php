@@ -53,7 +53,7 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->age }}</td>
                 <td>
-                    <img class="img-thumbnail" width="200" src="{{ $user->image }}" alt="{{ $user->name }}">
+                    <img class="img-thumbnail" width="200" src="{{ url('storage/'.$user->image) }}" alt="{{ $user->name }}">
                 </td>
                 <td>@lang('users.roles.'.$user->role)</td>
                 <td>

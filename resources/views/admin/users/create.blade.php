@@ -12,8 +12,7 @@
             <a class="btn btn-secondary float-end clearfix" href="{{ route('admin.users.index') }}">Back to
                 @lang('users.plural')</a>
         </div>
-        <form class="card row g-3 my-3" method="POST" action="{{ route('admin.users.store') }}"
-            enctype="multipart/form-data">
+        <form class="card row g-3 my-3" method="POST" action="{{ route('admin.users.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body row">
 
@@ -89,6 +88,15 @@
                         value="{{ old('bio') }}" required>
                     <div class="invalid-feedback">
                         Valid bio is required.
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="image" class="form-label">@lang('users.image')</label>
+                    <input type="file" class="form-control" id="image" name="image" aria-label="Image"
+                        value="{{ old('image') }}">
+                    <div class="invalid-feedback">
+                        Valid Image is required.
                     </div>
                 </div>
 

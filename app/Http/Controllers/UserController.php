@@ -44,6 +44,7 @@ class UserController extends Controller
             'gender' => 'required|in:m,f',
             'age' => 'required|integer',
             'bio' => 'required|regex:/^[a-zA-Z\s]*$/',
+            'image' => 'nullable|file|image|between:1,6000'
         ]);
 
         /* $user = new User();
@@ -57,6 +58,9 @@ class UserController extends Controller
         $user->save(); */
 
         $validated['password'] = \Hash::make($validated['password']);
+
+        if (!empty($validated['image']))
+            $validated['image'] = $request->file('image')->store('users/images');
 
         User::create($validated);
 

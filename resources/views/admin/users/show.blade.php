@@ -82,7 +82,7 @@
             <div class="col-12 mb-4 row">
                 <label class="col-md-2">@lang('users.image')</label>
                 <div class="col-md-10">
-                    : <img class="img-thumbnail m-1" width="95%" src="{{ $user->image }}" alt="{{ $user->name }}">
+                    : <img class="img-thumbnail m-1" width="95%" src="{{ url($user->image) }}" alt="{{ $user->name }}">
                 </div>
             </div>
 
