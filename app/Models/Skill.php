@@ -17,4 +17,12 @@ class Skill extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * The users that belong to the skill.
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

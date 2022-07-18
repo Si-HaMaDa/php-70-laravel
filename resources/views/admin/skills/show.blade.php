@@ -31,6 +31,20 @@
             </div>
 
             <div class="col-12 mb-4 row">
+                <label class="col-md-2">@lang('jobs.job_skills')</label>
+                <div class="col-md-10">
+                    :
+                    @forelse ($skill->users as $user)
+                        <a href="{{ route('admin.users.show', $user->id) }}">
+                            {{ $user->name }} <br>
+                        </a>
+                    @empty
+                        <p>No Users have this Skill!</p>
+                    @endforelse
+                </div>
+            </div>
+
+            <div class="col-12 mb-4 row">
                 <label class="col-md-2">@lang('skills.created_at')</label>
                 <div class="col-md-10">
                     : {{ $skill->created_at }}
