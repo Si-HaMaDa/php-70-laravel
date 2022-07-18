@@ -10,6 +10,7 @@ return [
     'created' => 'Category has been created successfully!',
     'updated' => 'Category has been updated successfully!',
     'deleted' => 'Category has been deleted successfully!',
+    'cant_delete' => 'Category Can\'t be deleted!',
     'ID' => 'ID',
     'name' => 'Name',
     'skill_users' => 'Category Users',
