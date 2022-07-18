@@ -48,3 +48,7 @@ Route::get('/', function () {
 //     Route::get('/', AdminController::class); // route('admin')
 //     Route::resource('users', UserController::class);
 // });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
