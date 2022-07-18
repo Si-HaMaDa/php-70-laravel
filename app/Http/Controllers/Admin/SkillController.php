@@ -52,16 +52,8 @@ class SkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Skill $skill)
     {
-        // $skill = Skill::where('id', $id)->first();
-        // $skill = Skill::find($id);
-        $skill = Skill::find($id);
-
-        if (!$skill)
-            return redirect(route('admin.skills.index'))->with('error', 'No Profile Found!');
-
-
         return view('admin.skills.show', compact('skill'));
     }
 
@@ -71,13 +63,8 @@ class SkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Skill $skill)
     {
-        $skill = Skill::find($id);
-
-        if (!$skill)
-            return redirect(route('admin.skills.index'))->with('error', 'No Profile Found!');
-
         return view('admin.skills.edit', compact('skill'));
     }
 
@@ -88,13 +75,11 @@ class SkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Skill $skill)
     {
         $validated = $request->validate([
             'name' => 'required|regex:/^[a-zA-Z.\s]*$/',
         ]);
-
-        $skill = Skill::find($id);
 
         $skill->update($validated);
 
@@ -107,9 +92,10 @@ class SkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Skill $skill)
     {
-        Skill::destroy($id);
+        $skill->delete();
+        // Skill::destroy($id);
         return redirect(route('admin.skills.index'))->with('success', __('skills.deleted'));
     }
 }
