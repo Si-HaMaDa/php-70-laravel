@@ -44,7 +44,7 @@ Route::get('/', function () {
 // });
 
 
-Route::prefix('admin')->as('admin.')->group(function () {
-    Route::get('/', AdminController::class); // route('admin')
-    Route::resource('users', UserController::class);
-});
+// Route::prefix('admin')->as('admin.')->group(function () {
+//     Route::get('/', AdminController::class); // route('admin')
+//     Route::resource('users', UserController::class);
+// });
