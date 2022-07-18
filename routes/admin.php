@@ -9,3 +9,5 @@ Route::resource('users', UserController::class);
 Route::resource('skills', SkillController::class);
 
 Route::resource('categories', CategoryController::class);
+
+Route::resource('jobs', JobController::class);
