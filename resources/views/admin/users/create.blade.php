@@ -92,6 +92,19 @@
                 </div>
 
                 <div class="col-12">
+                    <label for="skills" class="form-label">@lang('users.user_skills')</label>
+                    <select class="form-select" name="skills[]" id="skills" multiple required>
+                        @foreach ($skills as $skill)
+                            <option @selected(in_array($skill->id, (array) old('skills'))) value="{{ $skill->id }}">
+                                {{ $skill->name }}</option>
+                        @endforeach
+                    </select>
+                    <div class="invalid-feedback">
+                        Valid Skill is required.
+                    </div>
+                </div>
+
+                <div class="col-12">
                     <label for="image" class="form-label">@lang('users.image')</label>
                     <input type="file" class="form-control" id="image" name="image" aria-label="Image"
                         value="{{ old('image') }}">
@@ -99,6 +112,8 @@
                         Valid Image is required.
                     </div>
                 </div>
+
+
 
                 <hr class="my-4">
 

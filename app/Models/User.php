@@ -73,4 +73,12 @@ class User extends Authenticatable
             set: fn ($value) => \Hash::needsRehash($value) ? \Hash::make($value) : $value,
         );
     }
+
+    /**
+     * The skills that belong to the user.
+     */
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class);
+    }
 }

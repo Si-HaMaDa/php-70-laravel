@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $skills = Skill::select('id', 'name')->get();
+        return view('admin.users.create', compact('skills'));
     }
 
     /**
@@ -45,7 +47,9 @@ class UserController extends Controller
             'gender' => 'required|in:m,f',
             'age' => 'required|integer',
             'bio' => 'required|regex:/^[a-zA-Z\s]*$/',
-            'image' => 'nullable|file|image|between:1,6000'
+            'image' => 'nullable|file|image|between:1,6000',
+            'skills' => 'required|array',
+            'skills.*' => 'integer',
         ]);
 
         /* $user = new User();
@@ -63,7 +67,9 @@ class UserController extends Controller
         if (!empty($validated['image']))
             $validated['image'] = $request->file('image')->store('users/images');
 
-        User::create($validated);
+        $user = User::create($validated);
+
+        $user->skills()->sync($validated['skills']);
 
         return redirect(route('admin.users.index'))->with('success', __('users.created'));
     }
@@ -100,7 +106,8 @@ class UserController extends Controller
         if (!$user)
             return redirect(route('admin.users.index'))->with('error', 'No Profile Found!');
 
-        return view('admin.users.edit', compact('user'));
+        $skills = Skill::select('id', 'name')->get();
+        return view('admin.users.edit', compact('user', 'skills'));
     }
 
     /**
@@ -120,7 +127,9 @@ class UserController extends Controller
             'gender' => 'required|in:m,f',
             'age' => 'required|integer',
             'bio' => 'required|regex:/^[a-zA-Z\s]*$/',
-            'image' => 'nullable|file|image|between:1,6000'
+            'image' => 'nullable|file|image|between:1,6000',
+            'skills' => 'required|array',
+            'skills.*' => 'integer',
         ]);
 
         /* $user = User::find($id);
@@ -143,6 +152,8 @@ class UserController extends Controller
         }
 
         $user->update($validated);
+
+        $user->skills()->sync($validated['skills']);
 
         return redirect(route('admin.users.index'))->with('success', __('users.updated'));
     }
