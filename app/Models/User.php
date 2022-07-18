@@ -39,7 +39,6 @@ class User extends Authenticatable
         'age',
         'bio',
         'image',
-        '_token'
     ];
 
     /**
@@ -74,5 +73,4 @@ class User extends Authenticatable
             set: fn ($value) => \Hash::needsRehash($value) ? \Hash::make($value) : $value,
         );
     }
-
 }
