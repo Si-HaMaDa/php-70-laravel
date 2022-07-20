@@ -36,19 +36,20 @@ Route::get('/', function () {
 // Route::delete('admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 
 // Route::group([
-//     'prefix'    => 'admin',
+//     'prefix' => 'admin',
 //     'as' => 'admin.',
+//     'middleware' => 'auth'
 // ], function () {
 //     Route::get('/', AdminController::class); // route('admin')
 //     Route::resource('users', UserController::class);
 // });
 
 
-// Route::prefix('admin')->as('admin.')->group(function () {
+// Route::prefix('admin')->as('admin.')->middleware('auth')->group(function () {
 //     Route::get('/', AdminController::class); // route('admin')
 //     Route::resource('users', UserController::class);
 // });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); //->middleware('auth')
