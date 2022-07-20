@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('users', [App\Http\Controllers\Api\UserApiController::class, 'index'])->name('users.index');
+
+Route::post('users', [App\Http\Controllers\Api\UserApiController::class, 'store'])->name('users.store');

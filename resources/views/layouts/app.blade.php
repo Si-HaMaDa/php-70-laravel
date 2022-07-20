@@ -55,7 +55,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 @if (Auth::user()->role == 'admin')
-                                <a id="navbarDropdown" class="nav-link" href="" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link" href="{{ route('admin.') }}" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ __('Admin Home') }}
                                 </a>
                                 @endif
