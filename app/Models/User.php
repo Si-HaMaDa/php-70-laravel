@@ -60,6 +60,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public static $rules = [
+        'name' => 'required|regex:/^[a-zA-Z.\s]*$/',
+        'email' => 'required|email:rfc,dns|unique:users',
+        'password' => 'required|min:6|max:20|confirmed',
+        'role' => 'required|in:admin,user',
+        'gender' => 'required|in:m,f',
+        'age' => 'required|integer',
+        'bio' => 'required|regex:/^[a-zA-Z\s]*$/',
+        'image' => 'nullable|file|image|between:1,6000',
+        'skills' => 'required|array',
+        'skills.*' => 'integer',
+    ];
+
     /**
      * Interact with the user's first name.
      *

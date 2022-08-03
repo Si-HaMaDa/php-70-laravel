@@ -39,18 +39,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|regex:/^[a-zA-Z.\s]*$/',
-            'email' => 'required|email:rfc,dns|unique:users',
-            'password' => 'required|min:6|max:20|confirmed',
-            'role' => 'required|in:admin,user',
-            'gender' => 'required|in:m,f',
-            'age' => 'required|integer',
-            'bio' => 'required|regex:/^[a-zA-Z\s]*$/',
-            'image' => 'nullable|file|image|between:1,6000',
-            'skills' => 'required|array',
-            'skills.*' => 'integer',
-        ]);
+        $validated = $request->validate(User::$rules);
 
         /* $user = new User();
         $user->name = $validated['name'];
@@ -120,16 +109,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required|regex:/^[a-zA-Z.\s]*$/',
+            ...User::$rules,
             'email' => 'required|email:rfc,dns|unique:users,email,' . $id,
             'password' => 'nullable|min:6|max:20|confirmed',
-            'role' => 'required|in:admin,user',
-            'gender' => 'required|in:m,f',
-            'age' => 'required|integer',
-            'bio' => 'required|regex:/^[a-zA-Z\s]*$/',
-            'image' => 'nullable|file|image|between:1,6000',
-            'skills' => 'required|array',
-            'skills.*' => 'integer',
         ]);
 
         /* $user = User::find($id);
